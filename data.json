@@ -1,0 +1,156 @@
+[
+  {
+    "fecha": "2026-09-03",
+    "tipo": "Venta",
+    "desc": "Cliente no pidió el código",
+    "resp": "Diego",
+    "cliente": "Jamadeva",
+    "accion": "El cliente no pidió el código 111/1",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
+  },
+  {
+    "fecha": "2026-09-04",
+    "tipo": "Control",
+    "desc": "Mal controlado",
+    "resp": "Carlos",
+    "cliente": "Velez Autoservicios",
+    "accion": "Boleta mal controlada",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "Detectado cuando estaba el chofer en el cliente"
+  },
+  {
+    "fecha": "2026-09-04",
+    "tipo": "Control",
+    "desc": "Mal controlado",
+    "resp": "Ariel",
+    "cliente": "Almiron Emanuel",
+    "accion": "Boleta mal controlada",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "Detectado cuando estaba el chofer en el cliente"
+  },
+  {
+    "fecha": "2026-09-05",
+    "tipo": "Venta",
+    "desc": "Cliente no pidió el código",
+    "resp": "Sabrina",
+    "cliente": "Bocamasso",
+    "accion": "El cliente no pidió el código 1115/1",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
+  },
+  {
+    "fecha": "2026-09-07",
+    "tipo": "Control",
+    "desc": "Estaban controlando un palet de Nor pensando que era de Noir",
+    "resp": "Ariel",
+    "cliente": "Noir",
+    "accion": "Mal control",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "Detectado antes de despachar"
+  },
+  {
+    "fecha": "2026-09-07",
+    "tipo": "Pérdida de factura",
+    "desc": "Se perdió una factura de Campo de Sabores",
+    "resp": "Ariel",
+    "cliente": "Campo de Sabores",
+    "accion": "Perdieron la factura",
+    "estado": "Resuelto",
+    "resolucion": "",
+    "obs": "Detectado antes de despachar"
+  },
+  {
+    "fecha": "2026-09-07",
+    "tipo": "Faltante de mercadería",
+    "desc": "Faltó 1 caja de pouch cheddar, no avisaron nada el día de armado y recién se avisa al despachar; no quiso cubrir la mercadería con nuestro stock",
+    "resp": "Ariel",
+    "cliente": "Rey Jorge",
+    "accion": "Faltó 1 producto en el pedido",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "Detectado antes de despachar"
+  },
+  {
+    "fecha": "2026-09-08",
+    "tipo": "Armado de pedido",
+    "desc": "El lunes se dio para armar un pedido y lo hicieron el martes por la madrugada",
+    "resp": "Roman",
+    "cliente": "Establecimiento Naher",
+    "accion": "No pesar un pedido en el momento que se lo dan",
+    "estado": "Resuelto",
+    "resolucion": "",
+    "obs": "Detectado antes de despachar"
+  },
+  {
+    "fecha": "2026-09-09",
+    "tipo": "Control",
+    "desc": "Había que mandar solo 1 palet de cremoso y se envió también el resto de productos que no correspondía enviar",
+    "resp": "Ariel",
+    "cliente": "Almipal",
+    "accion": "Controló el palet de cremoso y el resto de productos que no había que enviar",
+    "estado": "Resuelto",
+    "resolucion": "",
+    "obs": "Detectado mientras el chofer descargaba en el cliente"
+  },
+  {
+    "fecha": "2026-09-09",
+    "tipo": "Control",
+    "desc": "Controlaron 1 boleta sola y el cliente tenía dos boletas",
+    "resp": "Ariel",
+    "cliente": "Ferrotoba",
+    "accion": "La otra boleta no se controló y no se envió esos productos",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "Detectado en el momento de la descarga"
+  },
+  {
+    "fecha": "2026-09-09",
+    "tipo": "Control",
+    "desc": "Controlaron cajas de tybo pero eran cremosos",
+    "resp": "Ariel",
+    "cliente": "Misso Alejandro",
+    "accion": "Controló 10 cajas de cremosos como si fueran tybo",
+    "estado": "Resuelto",
+    "resolucion": "Se realizo un crédito por la mercadería mal controlada y el cliente retiro las cajas correspondientes en un nuevo remito",
+    "obs": "Detectado en el momento de la descarga"
+  },
+  {
+    "fecha": "2026-09-11",
+    "tipo": "Control",
+    "desc": "Control de insumos: se envió mercadería equivocada",
+    "resp": "Ariel",
+    "cliente": "Italiana y Tremblay",
+    "accion": "Controló mal el insumo",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "Detectado al preparar los insumos para despachar el sábado"
+  },
+  {
+    "fecha": "2026-09-11",
+    "tipo": "Venta",
+    "desc": "Cliente no pidió el código",
+    "resp": "Sabrina",
+    "cliente": "Figueroa",
+    "accion": "No pidió caja de manteca x 100 grs",
+    "estado": "Sin resolver",
+    "resolucion": "Se realizo un crédito por el producto rechazado",
+    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
+  },
+  {
+    "fecha": "2026-09-12",
+    "tipo": "Control",
+    "desc": "Controlaron una boleta de papas fritas y la mercadería quedó acá",
+    "resp": "Carlos",
+    "cliente": "Valenzuela",
+    "accion": "Controló la boleta y la mercadería no fue",
+    "estado": "Sin resolver",
+    "resolucion": "La mercadería quedo en guarda y va a ser enviada nuevamente",
+    "obs": "Detectado en el momento de la descarga"
+  }
+]

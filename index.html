@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Registro de Errores — NOR Logística</title>
+<style>
+  :root{
+    --bg:#EEF0F2; --card:#FFFFFF; --ink:#1B2430; --ink-soft:#5B6672;
+    --navy:#16213E; --navy-2:#1F2E52;
+    --amber:#C7811A; --amber-bg:#FBEEDA;
+    --green:#3F7D58; --green-bg:#E4F0E8;
+    --line:#DCE1E6;
+    --mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  #app{max-width:560px;margin:0 auto;min-height:100vh;}
+  .topbar{background:var(--navy);color:#fff;padding:18px;position:sticky;top:0;z-index:5;}
+  .topbar .title{font-size:20px;font-weight:700;}
+  .topbar .stats{font-family:var(--mono);font-size:12.5px;color:#B9C2D6;margin-top:4px;}
+  .topbar .stats b{color:var(--amber);font-weight:600;}
+  .filters{display:flex;gap:8px;padding:12px 14px;overflow-x:auto;background:var(--navy-2);position:sticky;top:62px;z-index:4;}
+  .chip{flex:0 0 auto;padding:6px 13px;border-radius:100px;font-size:13px;color:#D7DDEA;border:1px solid rgba(255,255,255,0.18);background:transparent;cursor:pointer;white-space:nowrap;}
+  .chip.active{background:#fff;color:var(--navy);border-color:#fff;font-weight:600;}
+  .feed{padding:14px;display:flex;flex-direction:column;gap:10px;}
+  .empty{color:var(--ink-soft);text-align:center;padding:40px 20px;font-size:14px;line-height:1.5;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;}
+  .card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .client-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-top:8px;}
+  .client-col{display:flex;flex-direction:column;}
+  .resp-col{display:flex;flex-direction:column;align-items:flex-end;}
+  .col-label{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:2px;}
+  .client-name{font-size:15px;font-weight:700;color:var(--ink);}
+  .resp-name{font-size:13px;color:var(--ink-soft);white-space:nowrap;}
+  .fecha{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);}
+  .badge{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:100px;white-space:nowrap;}
+  .badge.resuelto{background:var(--green-bg);color:var(--green);}
+  .badge.pendiente{background:var(--amber-bg);color:var(--amber);}
+  .tipo{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:600;color:var(--navy-2);background:#EEF1F8;padding:2px 8px;border-radius:6px;}
+  .desc{font-size:14.5px;line-height:1.44;margin-top:8px;}
+  .meta-line{font-size:12.5px;color:var(--ink-soft);margin-top:7px;}
+  .meta-line b{color:var(--ink);font-weight:600;}
+  .extra{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);}
+  .extra-row{font-size:13px;line-height:1.45;margin-bottom:8px;}
+  .extra-row .label{font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:block;margin-bottom:2px;}
+  .resolucion{margin-top:9px;padding:10px 11px;border-radius:9px;background:var(--green-bg);border:1px solid #CFE4D7;}
+  .resolucion .label{font-family:var(--mono);font-size:11px;color:var(--green);display:block;margin-bottom:3px;font-weight:600;}
+  .resolucion .txt{font-size:13.5px;color:#2C5A3E;line-height:1.45;}
+  .footer-note{padding:16px;text-align:center;font-size:11.5px;color:var(--ink-soft);}
+
+  .fab{
+    position:fixed; bottom:22px; right:18px;
+    width:54px; height:54px; border-radius:50%; background:var(--amber); color:#fff;
+    border:none; font-size:28px; line-height:1; box-shadow:0 6px 16px rgba(0,0,0,0.25);
+    cursor:pointer; z-index:6; display:none; align-items:center; justify-content:center;
+  }
+  .gear{
+    position:fixed; top:14px; right:14px; z-index:7; width:30px; height:30px;
+    border-radius:50%; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.08);
+    color:#fff; font-size:15px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; line-height:1;
+  }
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(15,20,32,0.55); z-index:10;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  .modal-backdrop.hidden{display:none;}
+  .modal{
+    background:#fff; width:100%; max-width:560px; border-radius:16px 16px 0 0;
+    max-height:88vh; overflow-y:auto; padding:18px 18px 22px;
+  }
+  .modal h2{margin:0 0 14px; font-size:17px; color:var(--navy);}
+  .modal p.hint{font-size:12.5px; color:var(--ink-soft); margin:-6px 0 12px;}
+  .field{margin-bottom:13px;}
+  .field label{display:block; font-size:12px; font-weight:600; color:var(--ink-soft); margin-bottom:5px;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:10px 11px; border-radius:9px; border:1px solid var(--line);
+    font-size:14.5px; font-family:var(--sans); background:#FAFBFC; color:var(--ink);
+  }
+  .field textarea{min-height:56px; resize:vertical;}
+  .modal-actions{display:flex; gap:10px; margin-top:16px;}
+  .btn{flex:1; padding:12px; border-radius:10px; border:none; font-size:14.5px; font-weight:600; cursor:pointer; font-family:var(--sans);}
+  .btn.primary{background:var(--navy); color:#fff;}
+  .btn.ghost{background:#F0F1F3; color:var(--ink);}
+  .btn:disabled{opacity:0.6;}
+  .toast{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%);
+    background:var(--navy); color:#fff; padding:10px 18px; border-radius:100px;
+    font-size:13.5px; z-index:20; opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<button class="gear" id="btnSettings" title="Configurar token">⚙</button>
+<div id="app">
+  <div class="topbar">
+    <div class="title">Registro de Errores</div>
+    <div class="stats" id="stats">Cargando…</div>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="feed" id="feed"></div>
+  <div class="footer-note" id="footerNote"></div>
+</div>
+<button class="fab" id="fabAdd">+</button>
+
+<div class="modal-backdrop hidden" id="tokenBackdrop">
+  <div class="modal">
+    <h2>Conectar con GitHub</h2>
+    <p class="hint">Pegá el token de acceso (te lo pasa Iván). Se guarda solo en este dispositivo, nadie más lo ve.</p>
+    <div class="field">
+      <input type="password" id="f_token" placeholder="github_pat_...">
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btnTokenCancel">Cancelar</button>
+      <button class="btn primary" id="btnTokenSave">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop hidden" id="modalBackdrop">
+  <div class="modal">
+    <h2>Nuevo error</h2>
+    <div class="field">
+      <label>Fecha</label>
+      <input type="date" id="f_fecha">
+    </div>
+    <div class="field">
+      <label>Tipo de error</label>
+      <select id="f_tipo">
+        <option>Control</option>
+        <option>Venta</option>
+        <option>Faltante de mercadería</option>
+        <option>Armado de pedido</option>
+        <option>Pérdida de factura</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Descripción del error</label>
+      <textarea id="f_desc" placeholder="Qué pasó"></textarea>
+    </div>
+    <div class="field">
+      <label>Responsable</label>
+      <input type="text" id="f_resp" list="respList" placeholder="Nombre">
+      <datalist id="respList">
+        <option>Ariel</option><option>Carlos</option><option>Sabrina</option>
+        <option>Roman</option><option>Diego</option>
+      </datalist>
+    </div>
+    <div class="field">
+      <label>Cliente / N° de pedido</label>
+      <input type="text" id="f_cliente" placeholder="Cliente o número de pedido">
+    </div>
+    <div class="field">
+      <label>Acción correctiva</label>
+      <textarea id="f_accion" placeholder="Qué se hizo o falta hacer"></textarea>
+    </div>
+    <div class="field">
+      <label>Estado</label>
+      <select id="f_estado">
+        <option>Sin resolver</option>
+        <option>Resuelto</option>
+      </select>
+    </div>
+    <div class="field" id="fieldResolucionNueva" style="display:none;">
+      <label>Cómo se resolvió</label>
+      <textarea id="f_resolucion_nueva" placeholder="Qué se hizo para resolverlo"></textarea>
+    </div>
+    <div class="field">
+      <label>Observaciones</label>
+      <textarea id="f_obs" placeholder="Opcional"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btnCancel">Cancelar</button>
+      <button class="btn primary" id="btnSave">Guardar error</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop hidden" id="resolveBackdrop">
+  <div class="modal">
+    <h2>Marcar como resuelto</h2>
+    <p class="hint">Contá qué se hizo para resolverlo. Va a quedar visible en la tarjeta.</p>
+    <div class="field">
+      <textarea id="f_resolucion" placeholder="Qué se hizo para resolverlo"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btnResolveCancel">Cancelar</button>
+      <button class="btn primary" id="btnResolveSave">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const REPO = 'ivanbordagaray-code/registro-errores';
+const FILE_PATH = 'data.json';
+const API_BASE = 'https://api.github.com/repos/' + REPO + '/contents/' + FILE_PATH;
+
+let errores = [];
+let fileSha = null;
+let filtroEstado = 'todos';
+let pendingResolveId = null;
+
+function getToken(){ return localStorage.getItem('gh_token') || ''; }
+function setToken(t){ localStorage.setItem('gh_token', t); }
+
+function fmtFecha(str){
+  const d = new Date(str + 'T00:00:00');
+  if(isNaN(d)) return str;
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return d.getDate() + ' ' + meses[d.getMonth()];
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+function b64EncodeUnicode(str){ return btoa(unescape(encodeURIComponent(str))); }
+function b64DecodeUnicode(str){ return decodeURIComponent(escape(atob(str))); }
+
+async function loadData(){
+  try{
+    const res = await fetch(API_BASE + '?t=' + Date.now(), {
+      headers: {'Accept':'application/vnd.github+json'},
+      cache: 'no-store'
+    });
+    if(!res.ok) throw new Error('fetch failed');
+    const json = await res.json();
+    fileSha = json.sha;
+    errores = JSON.parse(b64DecodeUnicode(json.content));
+    errores.forEach((e, i) => e.id = 'e' + i);
+    updateFooter();
+    render();
+  }catch(e){
+    document.getElementById('feed').innerHTML = '<div class="empty">No se pudo cargar el registro.</div>';
+  }
+}
+
+function updateFooter(){
+  document.getElementById('footerNote').textContent = getToken()
+    ? 'Conectado — los cambios se guardan directo en GitHub.'
+    : 'Tocá el ⚙ para conectar y poder cargar errores desde acá.';
+}
+
+async function commitData(message){
+  const token = getToken();
+  if(!token){ showToast('Primero conectá tu token (⚙)'); return false; }
+  const cleaned = errores.map(({id, ...rest}) => rest);
+  const body = {
+    message: message,
+    content: b64EncodeUnicode(JSON.stringify(cleaned, null, 2)),
+    sha: fileSha
+  };
+  try{
+    const res = await fetch(API_BASE, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok){
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Error al guardar');
+    }
+    const json = await res.json();
+    fileSha = json.content.sha;
+    return true;
+  }catch(e){
+    showToast('No se pudo guardar: ' + e.message);
+    return false;
+  }
+}
+
+function render(){
+  const isEditor = !!getToken();
+  document.getElementById('fabAdd').style.display = isEditor ? 'flex' : 'none';
+  const total = errores.length;
+  const pendientes = errores.filter(e => e.estado === 'Sin resolver').length;
+  document.getElementById('stats').innerHTML = total + ' registrados · <b>' + pendientes + ' sin resolver</b>';
+
+  const filtros = document.getElementById('filters');
+  filtros.innerHTML = '';
+  [['todos','Todos'],['Sin resolver','Sin resolver'],['Resuelto','Resueltos']].forEach(([val,label]) => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (filtroEstado === val ? ' active' : '');
+    b.textContent = label;
+    b.onclick = () => { filtroEstado = val; render(); };
+    filtros.appendChild(b);
+  });
+
+  const feed = document.getElementById('feed');
+  feed.innerHTML = '';
+  let lista = errores.slice().reverse();
+  if(filtroEstado !== 'todos') lista = lista.filter(e => e.estado === filtroEstado);
+
+  if(lista.length === 0){
+    feed.innerHTML = '<div class="empty">No hay errores que coincidan con el filtro.</div>';
+    return;
+  }
+
+  lista.forEach(e => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const badgeClass = e.estado === 'Resuelto' ? 'resuelto' : 'pendiente';
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="fecha">${fmtFecha(e.fecha)}</span>
+        <span class="badge ${badgeClass}">${e.estado}</span>
+      </div>
+      <div class="client-row">
+        <div class="client-col">
+          <span class="col-label">Afectado</span>
+          <span class="client-name">${e.cliente || '—'}</span>
+        </div>
+        <div class="resp-col">
+          <span class="col-label">Responsable</span>
+          <span class="resp-name">${e.resp || '—'}</span>
+        </div>
+      </div>
+      <span class="tipo">${e.tipo}</span>
+      <div class="desc">${e.desc}</div>
+      ${e.obs ? `
+      <div class="extra">
+        <div class="extra-row"><span class="label">Observaciones</span>${e.obs}</div>
+      </div>` : ''}
+      ${e.estado === 'Resuelto' && e.resolucion ? `
+        <div class="resolucion">
+          <span class="label">Cómo se resolvió</span>
+          <div class="txt">${e.resolucion}</div>
+        </div>` : ''}
+      ${isEditor && e.estado === 'Resuelto' ? `
+        <button class="btn ghost" style="margin-top:9px;width:100%;" data-edit-resolucion="${e.id}">
+          ${e.resolucion ? 'Editar cómo se resolvió' : 'Agregar cómo se resolvió'}
+        </button>
+      ` : ''}
+      ${isEditor ? `
+      <button class="btn ${e.estado === 'Resuelto' ? 'ghost' : 'primary'}" style="margin-top:9px;width:100%;" data-toggle="${e.id}">
+        ${e.estado === 'Resuelto' ? 'Marcar como sin resolver' : 'Marcar como resuelto'}
+      </button>` : ''}
+    `;
+    if(isEditor){
+      card.querySelector('[data-toggle]').addEventListener('click', () => onToggleClick(e.id));
+      const editBtn = card.querySelector('[data-edit-resolucion]');
+      if(editBtn) editBtn.addEventListener('click', () => openResolveModal(e.id));
+    }
+    feed.appendChild(card);
+  });
+}
+
+function openResolveModal(id){
+  const item = errores.find(e => e.id === id);
+  if(!item) return;
+  pendingResolveId = id;
+  document.getElementById('f_resolucion').value = item.resolucion || '';
+  document.getElementById('resolveBackdrop').classList.remove('hidden');
+}
+
+function onToggleClick(id){
+  const item = errores.find(e => e.id === id);
+  if(!item) return;
+  if(item.estado === 'Resuelto'){
+    item.estado = 'Sin resolver';
+    commitData('Reabrir error: ' + item.cliente).then(ok => {
+      if(ok){ render(); showToast('Estado actualizado'); }
+    });
+  } else {
+    openResolveModal(id);
+  }
+}
+
+const tokenBackdrop = document.getElementById('tokenBackdrop');
+document.getElementById('btnSettings').onclick = () => {
+  document.getElementById('f_token').value = getToken();
+  tokenBackdrop.classList.remove('hidden');
+};
+document.getElementById('btnTokenCancel').onclick = () => tokenBackdrop.classList.add('hidden');
+tokenBackdrop.addEventListener('click', (e) => { if(e.target === tokenBackdrop) tokenBackdrop.classList.add('hidden'); });
+document.getElementById('btnTokenSave').onclick = () => {
+  setToken(document.getElementById('f_token').value.trim());
+  tokenBackdrop.classList.add('hidden');
+  updateFooter();
+  render();
+  showToast('Token guardado en este dispositivo');
+};
+
+const resolveBackdrop = document.getElementById('resolveBackdrop');
+document.getElementById('btnResolveCancel').onclick = () => resolveBackdrop.classList.add('hidden');
+resolveBackdrop.addEventListener('click', (ev) => { if(ev.target === resolveBackdrop) resolveBackdrop.classList.add('hidden'); });
+document.getElementById('btnResolveSave').onclick = async () => {
+  const item = errores.find(e => e.id === pendingResolveId);
+  if(!item) return;
+  const btn = document.getElementById('btnResolveSave');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  const prevEstado = item.estado, prevResolucion = item.resolucion;
+  item.estado = 'Resuelto';
+  item.resolucion = document.getElementById('f_resolucion').value.trim();
+  const ok = await commitData('Resolver error: ' + item.cliente);
+  btn.disabled = false; btn.textContent = 'Guardar';
+  if(ok){
+    render();
+    resolveBackdrop.classList.add('hidden');
+    showToast('Marcado como resuelto');
+  } else {
+    item.estado = prevEstado;
+    item.resolucion = prevResolucion;
+  }
+};
+
+const modalBackdrop = document.getElementById('modalBackdrop');
+document.getElementById('fabAdd').onclick = () => {
+  if(!getToken()){ showToast('Primero conectá tu token (⚙)'); return; }
+  document.getElementById('f_fecha').value = new Date().toISOString().slice(0,10);
+  document.getElementById('f_tipo').value = 'Control';
+  document.getElementById('f_desc').value = '';
+  document.getElementById('f_resp').value = '';
+  document.getElementById('f_cliente').value = '';
+  document.getElementById('f_accion').value = '';
+  document.getElementById('f_estado').value = 'Sin resolver';
+  document.getElementById('f_resolucion_nueva').value = '';
+  document.getElementById('fieldResolucionNueva').style.display = 'none';
+  document.getElementById('f_obs').value = '';
+  modalBackdrop.classList.remove('hidden');
+};
+document.getElementById('f_estado').addEventListener('change', (e) => {
+  document.getElementById('fieldResolucionNueva').style.display = e.target.value === 'Resuelto' ? 'block' : 'none';
+});
+document.getElementById('btnCancel').onclick = () => modalBackdrop.classList.add('hidden');
+modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) modalBackdrop.classList.add('hidden'); });
+
+document.getElementById('btnSave').onclick = async () => {
+  const desc = document.getElementById('f_desc').value.trim();
+  if(!desc){ showToast('Falta la descripción del error'); return; }
+  const nuevo = {
+    id: 'tmp',
+    fecha: document.getElementById('f_fecha').value || new Date().toISOString().slice(0,10),
+    tipo: document.getElementById('f_tipo').value,
+    desc: desc,
+    resp: document.getElementById('f_resp').value.trim(),
+    cliente: document.getElementById('f_cliente').value.trim(),
+    accion: document.getElementById('f_accion').value.trim(),
+    estado: document.getElementById('f_estado').value,
+    resolucion: document.getElementById('f_resolucion_nueva').value.trim(),
+    obs: document.getElementById('f_obs').value.trim()
+  };
+  const btn = document.getElementById('btnSave');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  errores.push(nuevo);
+  const ok = await commitData('Nuevo error: ' + (nuevo.cliente || nuevo.tipo));
+  btn.disabled = false; btn.textContent = 'Guardar error';
+  if(ok){
+    errores.forEach((e, i) => e.id = 'e' + i);
+    render();
+    modalBackdrop.classList.add('hidden');
+    showToast('Error guardado');
+  } else {
+    errores.pop();
+  }
+};
+
+loadData();
+</script>
+</body>
+</html>
