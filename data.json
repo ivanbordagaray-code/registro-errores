@@ -106,8 +106,10 @@
     "cliente": "Ferrotoba",
     "accion": "La otra boleta no se controló y no se envió esos productos",
     "estado": "Resuelto",
-    "resolucion": "Se envió la mercadería",
-    "obs": "Detectado en el momento de la descarga"
+    "resolucion": "Se envió la mercadería en la proxima entrega",
+    "obs": "Detectado en el momento de la descarga",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:41:13.124Z"
   },
   {
     "fecha": "2026-09-09",
