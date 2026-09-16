@@ -17,8 +17,8 @@
     "resp": "Carlos",
     "cliente": "Velez Autoservicios",
     "accion": "Boleta mal controlada",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Falto una caja que estaba en deposito se realizo el credito por la caja faltante",
     "obs": "Detectado cuando estaba el chofer en el cliente"
   },
   {
