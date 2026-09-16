@@ -152,5 +152,16 @@
     "estado": "Resuelto",
     "resolucion": "La mercadería quedo en guarda y va a ser enviada nuevamente",
     "obs": "Detectado en el momento de la descarga"
+  },
+  {
+    "fecha": "2026-09-16",
+    "tipo": "Venta",
+    "desc": "Llegamos al cliente basigma y el chofer informa que el cliente anulo el pedido",
+    "resp": "Candela",
+    "cliente": "Basigma",
+    "accion": "el cliente anula el pedido, no lo quiere y la vendedora no avisa",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": ""
   }
 ]
