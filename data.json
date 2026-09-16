@@ -2,13 +2,15 @@
   {
     "fecha": "2026-09-03",
     "tipo": "Venta",
-    "desc": "Cliente no pidió el código",
+    "desc": "Cliente no pidió el código 111/1 papas fritas",
     "resp": "Diego",
     "cliente": "Jamadeva",
-    "accion": "El cliente no pidió el código 111/1",
+    "accion": "El cliente no pidió el código 111/1 papas fritas",
     "estado": "Resuelto",
     "resolucion": "Se realizo un credito por el producto no pedido",
-    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
+    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:45:13.177Z"
   },
   {
     "fecha": "2026-09-04",
