@@ -38,10 +38,12 @@
     "desc": "Cliente no pidió el código",
     "resp": "Sabrina",
     "cliente": "Bocamasso",
-    "accion": "El cliente no pidió el código 1115/1",
+    "accion": "El cliente no pidió el código 1115/1 papas fritas",
     "estado": "Resuelto",
     "resolucion": "Se realizo un credito por el producto no pedido",
-    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
+    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:41:47.417Z"
   },
   {
     "fecha": "2026-09-07",
