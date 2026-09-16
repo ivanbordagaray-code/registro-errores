@@ -84,7 +84,7 @@
     "cliente": "Establecimiento Naher",
     "accion": "No pesar un pedido en el momento que se lo dan",
     "estado": "Resuelto",
-    "resolucion": "",
+    "resolucion": "Se armo antes del despacho",
     "obs": "Detectado antes de despachar"
   },
   {
