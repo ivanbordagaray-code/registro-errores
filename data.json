@@ -163,5 +163,16 @@
     "estado": "Sin resolver",
     "resolucion": "",
     "obs": ""
+  },
+  {
+    "fecha": "2026-09-16",
+    "tipo": "Venta",
+    "desc": "Cliente rechaza producto no pedido reggiano e de oro",
+    "resp": "Claudia",
+    "cliente": "Ortega karina",
+    "accion": "En el momento de descarga el cliente rechaza el reggiano",
+    "estado": "Resuelto",
+    "resolucion": "Se realizó un crédito",
+    "obs": ""
   }
 ]
