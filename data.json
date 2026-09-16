@@ -16,10 +16,12 @@
     "desc": "Mal controlado",
     "resp": "Carlos",
     "cliente": "Velez Autoservicios",
-    "accion": "Boleta mal controlada",
+    "accion": "Boleta mal controlada falto una caja que estaba en deposito, se realizo el credito por la caja faltantej",
     "estado": "Resuelto",
-    "resolucion": "Falto una caja que estaba en deposito se realizo el credito por la caja faltante",
-    "obs": "Detectado cuando estaba el chofer en el cliente"
+    "resolucion": "Falto una caja que estaba en deposito se realizo el credito por la caja faltantej",
+    "obs": "Detectado cuando estaba el chofer en el cliente",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:42:45.659Z"
   },
   {
     "fecha": "2026-09-04",
