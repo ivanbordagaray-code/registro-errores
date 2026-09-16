@@ -6,8 +6,8 @@
     "resp": "Diego",
     "cliente": "Jamadeva",
     "accion": "El cliente no pidió el código 111/1",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Se realizo un credito por el producto no pedido",
     "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
   },
   {
