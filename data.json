@@ -77,17 +77,6 @@
     "obs": "Detectado antes de despachar"
   },
   {
-    "fecha": "2026-09-08",
-    "tipo": "Armado de pedido",
-    "desc": "El lunes se dio para armar un pedido y lo hicieron el martes por la madrugada",
-    "resp": "Roman",
-    "cliente": "Establecimiento Naher",
-    "accion": "No pesar un pedido en el momento que se lo dan",
-    "estado": "Resuelto",
-    "resolucion": "Se armo antes del despacho",
-    "obs": "Detectado antes de despachar"
-  },
-  {
     "fecha": "2026-09-09",
     "tipo": "Control",
     "desc": "Había que mandar solo 1 palet de cremoso y se envió también el resto de productos que no correspondía enviar",
