@@ -50,8 +50,8 @@
     "resp": "Ariel",
     "cliente": "Noir",
     "accion": "Mal control",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Se controlo bien y no fue enviado el palet",
     "obs": "Detectado antes de despachar"
   },
   {
