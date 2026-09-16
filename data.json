@@ -105,8 +105,8 @@
     "resp": "Ariel",
     "cliente": "Ferrotoba",
     "accion": "La otra boleta no se controló y no se envió esos productos",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Se envió la mercadería",
     "obs": "Detectado en el momento de la descarga"
   },
   {
