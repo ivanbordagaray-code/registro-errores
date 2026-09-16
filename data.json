@@ -62,7 +62,7 @@
     "cliente": "Campo de Sabores",
     "accion": "Perdieron la factura",
     "estado": "Resuelto",
-    "resolucion": "",
+    "resolucion": "Se pidió la factura antes de despachar el pedido",
     "obs": "Detectado antes de despachar"
   },
   {
