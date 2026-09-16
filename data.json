@@ -28,13 +28,15 @@
   {
     "fecha": "2026-09-04",
     "tipo": "Control",
-    "desc": "Mal controlado",
+    "desc": "El cliente pidio el codigo 117 y le fue el codigo 170 papas fritas 24 cajas",
     "resp": "Ariel",
     "cliente": "Almiron Emanuel",
     "accion": "Boleta mal controlada",
     "estado": "Resuelto",
     "resolucion": "Se realizo un credito por la mercaderia",
-    "obs": "Detectado cuando estaba el chofer en el cliente"
+    "obs": "Detectado cuando estaba el chofer en el cliente",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:46:13.431Z"
   },
   {
     "fecha": "2026-09-05",
