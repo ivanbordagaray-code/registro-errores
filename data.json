@@ -135,13 +135,15 @@
   {
     "fecha": "2026-09-11",
     "tipo": "Venta",
-    "desc": "Cliente no pidió el código",
+    "desc": "Cliente no pidió  caja de manteca x 100 grs",
     "resp": "Sabrina",
     "cliente": "Figueroa",
     "accion": "No pidió caja de manteca x 100 grs",
     "estado": "Resuelto",
     "resolucion": "Se realizo un crédito por el producto rechazado",
-    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido"
+    "obs": "En el momento de la descarga el cliente rechaza un producto no pedido",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:48:25.355Z"
   },
   {
     "fecha": "2026-09-12",
