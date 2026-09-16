@@ -70,8 +70,10 @@
     "cliente": "Campo de Sabores",
     "accion": "Perdieron la factura",
     "estado": "Resuelto",
-    "resolucion": "Se pidió la factura antes de despachar el pedido",
-    "obs": "Detectado antes de despachar"
+    "resolucion": "Se pidió la factura a expedicion la italiana antes de despachar el pedido",
+    "obs": "Detectado antes de despachar",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-16T17:47:22.149Z"
   },
   {
     "fecha": "2026-09-07",
