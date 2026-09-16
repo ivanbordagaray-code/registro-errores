@@ -28,8 +28,8 @@
     "resp": "Ariel",
     "cliente": "Almiron Emanuel",
     "accion": "Boleta mal controlada",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Se realizo un credito por la mercaderia",
     "obs": "Detectado cuando estaba el chofer en el cliente"
   },
   {
