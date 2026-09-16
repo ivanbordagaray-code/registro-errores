@@ -13,15 +13,15 @@
   {
     "fecha": "2026-09-04",
     "tipo": "Control",
-    "desc": "Mal controlado",
+    "desc": "Falto una caja de papas fritas",
     "resp": "Carlos",
     "cliente": "Velez Autoservicios",
     "accion": "Boleta mal controlada falto una caja que estaba en deposito",
     "estado": "Resuelto",
-    "resolucion": "Falto una caja que estaba en deposito se realizo el credito por la caja faltante",
+    "resolucion": "se realizo el crédito por la caja faltante",
     "obs": "Detectado cuando estaba el chofer en el cliente",
     "editadoPor": "Ivan",
-    "editadoEl": "2026-09-16T17:43:15.905Z"
+    "editadoEl": "2026-09-16T17:44:42.984Z"
   },
   {
     "fecha": "2026-09-04",
