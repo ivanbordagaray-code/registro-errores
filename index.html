@@ -10,6 +10,7 @@
     --navy:#16213E; --navy-2:#1F2E52;
     --amber:#C7811A; --amber-bg:#FBEEDA;
     --green:#3F7D58; --green-bg:#E4F0E8;
+    --red:#B3432B; --red-bg:#FBE6E1;
     --line:#DCE1E6;
     --mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -21,9 +22,15 @@
   .topbar .title{font-size:20px;font-weight:700;}
   .topbar .stats{font-family:var(--mono);font-size:12.5px;color:#B9C2D6;margin-top:4px;}
   .topbar .stats b{color:var(--amber);font-weight:600;}
+  .topbar .stats a{color:#B9C2D6;text-decoration:underline;cursor:pointer;}
   .filters{display:flex;gap:8px;padding:12px 14px;overflow-x:auto;background:var(--navy-2);position:sticky;top:62px;z-index:4;}
   .chip{flex:0 0 auto;padding:6px 13px;border-radius:100px;font-size:13px;color:#D7DDEA;border:1px solid rgba(255,255,255,0.18);background:transparent;cursor:pointer;white-space:nowrap;}
   .chip.active{background:#fff;color:var(--navy);border-color:#fff;font-weight:600;}
+  .search-row{padding:10px 14px 0;}
+  .search-row input{
+    width:100%; padding:9px 12px; border-radius:9px; border:1px solid var(--line);
+    font-size:14px; font-family:var(--sans); background:var(--card); color:var(--ink);
+  }
   .feed{padding:14px;display:flex;flex-direction:column;gap:10px;}
   .empty{color:var(--ink-soft);text-align:center;padding:40px 20px;font-size:14px;line-height:1.5;}
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;}
@@ -40,15 +47,17 @@
   .badge.pendiente{background:var(--amber-bg);color:var(--amber);}
   .tipo{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:600;color:var(--navy-2);background:#EEF1F8;padding:2px 8px;border-radius:6px;}
   .desc{font-size:14.5px;line-height:1.44;margin-top:8px;}
-  .meta-line{font-size:12.5px;color:var(--ink-soft);margin-top:7px;}
-  .meta-line b{color:var(--ink);font-weight:600;}
   .extra{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);}
   .extra-row{font-size:13px;line-height:1.45;margin-bottom:8px;}
   .extra-row .label{font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:block;margin-bottom:2px;}
   .resolucion{margin-top:9px;padding:10px 11px;border-radius:9px;background:var(--green-bg);border:1px solid #CFE4D7;}
   .resolucion .label{font-family:var(--mono);font-size:11px;color:var(--green);display:block;margin-bottom:3px;font-weight:600;}
   .resolucion .txt{font-size:13.5px;color:#2C5A3E;line-height:1.45;}
+  .audit{margin-top:8px;font-size:11px;color:var(--ink-soft);font-family:var(--mono);}
   .footer-note{padding:16px;text-align:center;font-size:11.5px;color:var(--ink-soft);}
+
+  .btn-row{display:flex;gap:8px;margin-top:9px;}
+  .btn-row .btn{margin-top:0;}
 
   .fab{
     position:fixed; bottom:22px; right:18px;
@@ -56,13 +65,15 @@
     border:none; font-size:28px; line-height:1; box-shadow:0 6px 16px rgba(0,0,0,0.25);
     cursor:pointer; z-index:6; display:none; align-items:center; justify-content:center;
   }
-  .gear{
-    position:fixed; top:14px; right:14px; z-index:7; width:30px; height:30px;
+  .icon-btn{
+    position:fixed; top:14px; z-index:7; width:30px; height:30px;
     border-radius:50%; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.08);
-    color:#fff; font-size:15px; cursor:pointer;
+    color:#fff; font-size:14px; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     padding:0; line-height:1;
   }
+  #btnSettings{right:14px;}
+  #btnStats{right:52px;}
   .modal-backdrop{
     position:fixed; inset:0; background:rgba(15,20,32,0.55); z-index:10;
     display:flex; align-items:flex-end; justify-content:center;
@@ -85,6 +96,7 @@
   .btn{flex:1; padding:12px; border-radius:10px; border:none; font-size:14.5px; font-weight:600; cursor:pointer; font-family:var(--sans);}
   .btn.primary{background:var(--navy); color:#fff;}
   .btn.ghost{background:#F0F1F3; color:var(--ink);}
+  .btn.danger{background:var(--red-bg); color:var(--red);}
   .btn:disabled{opacity:0.6;}
   .toast{
     position:fixed; bottom:22px; left:50%; transform:translateX(-50%);
@@ -92,16 +104,24 @@
     font-size:13.5px; z-index:20; opacity:0; pointer-events:none; transition:opacity .2s;
   }
   .toast.show{opacity:1;}
+  .stat-block{margin-bottom:16px;}
+  .stat-block h3{font-size:12px;text-transform:uppercase;letter-spacing:0.03em;color:var(--ink-soft);margin:0 0 8px;font-family:var(--mono);}
+  .stat-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .stat-row b{font-family:var(--mono);}
 </style>
 </head>
 <body>
-<button class="gear" id="btnSettings" title="Configurar token">⚙</button>
+<button class="icon-btn" id="btnStats" title="Ver resumen">📊</button>
+<button class="icon-btn" id="btnSettings" title="Configurar token">⚙</button>
 <div id="app">
   <div class="topbar">
     <div class="title">Registro de Errores</div>
     <div class="stats" id="stats">Cargando…</div>
   </div>
   <div class="filters" id="filters"></div>
+  <div class="search-row">
+    <input type="text" id="search" placeholder="Buscar por cliente, responsable o descripción…">
+  </div>
   <div class="feed" id="feed"></div>
   <div class="footer-note" id="footerNote"></div>
 </div>
@@ -112,7 +132,12 @@
     <h2>Conectar con GitHub</h2>
     <p class="hint">Pegá el token de acceso (te lo pasa Iván). Se guarda solo en este dispositivo, nadie más lo ve.</p>
     <div class="field">
+      <label>Token</label>
       <input type="password" id="f_token" placeholder="github_pat_...">
+    </div>
+    <div class="field">
+      <label>Tu nombre</label>
+      <input type="text" id="f_name" placeholder="Para que quede registrado quién carga y resuelve">
     </div>
     <div class="modal-actions">
       <button class="btn ghost" id="btnTokenCancel">Cancelar</button>
@@ -121,9 +146,19 @@
   </div>
 </div>
 
+<div class="modal-backdrop hidden" id="statsBackdrop">
+  <div class="modal">
+    <h2>Resumen</h2>
+    <div id="statsContent"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="btnStatsClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-backdrop hidden" id="modalBackdrop">
   <div class="modal">
-    <h2>Nuevo error</h2>
+    <h2 id="modalTitle">Nuevo error</h2>
     <div class="field">
       <label>Fecha</label>
       <input type="date" id="f_fecha">
@@ -204,13 +239,29 @@ const API_BASE = 'https://api.github.com/repos/' + REPO + '/contents/' + FILE_PA
 let errores = [];
 let fileSha = null;
 let filtroEstado = 'todos';
+let filtroTexto = '';
 let pendingResolveId = null;
+let editingId = null;
 
 function getToken(){ return localStorage.getItem('gh_token') || ''; }
 function setToken(t){ localStorage.setItem('gh_token', t); }
+function getName(){ return localStorage.getItem('gh_name') || ''; }
+function setName(n){ localStorage.setItem('gh_name', n); }
+
+function ensureName(){
+  let n = getName();
+  if(!n){
+    n = window.prompt('Tu nombre (para quedar registrado en lo que cargues o resuelvas):');
+    if(n && n.trim()){ setName(n.trim()); n = n.trim(); }
+  }
+  return n;
+}
+
+function nowIso(){ return new Date().toISOString(); }
 
 function fmtFecha(str){
-  const d = new Date(str + 'T00:00:00');
+  if(!str) return '—';
+  const d = new Date(str.length > 10 ? str : str + 'T00:00:00');
   if(isNaN(d)) return str;
   const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
   return d.getDate() + ' ' + meses[d.getMonth()];
@@ -285,6 +336,7 @@ async function commitData(message){
 function render(){
   const isEditor = !!getToken();
   document.getElementById('fabAdd').style.display = isEditor ? 'flex' : 'none';
+
   const total = errores.length;
   const pendientes = errores.filter(e => e.estado === 'Sin resolver').length;
   document.getElementById('stats').innerHTML = total + ' registrados · <b>' + pendientes + ' sin resolver</b>';
@@ -303,9 +355,17 @@ function render(){
   feed.innerHTML = '';
   let lista = errores.slice().reverse();
   if(filtroEstado !== 'todos') lista = lista.filter(e => e.estado === filtroEstado);
+  if(filtroTexto){
+    const q = filtroTexto.toLowerCase();
+    lista = lista.filter(e =>
+      (e.cliente||'').toLowerCase().includes(q) ||
+      (e.resp||'').toLowerCase().includes(q) ||
+      (e.desc||'').toLowerCase().includes(q)
+    );
+  }
 
   if(lista.length === 0){
-    feed.innerHTML = '<div class="empty">No hay errores que coincidan con el filtro.</div>';
+    feed.innerHTML = '<div class="empty">No hay errores que coincidan.</div>';
     return;
   }
 
@@ -313,6 +373,12 @@ function render(){
     const card = document.createElement('div');
     card.className = 'card';
     const badgeClass = e.estado === 'Resuelto' ? 'resuelto' : 'pendiente';
+
+    let auditLines = '';
+    if(e.creadoPor) auditLines += `Cargado por ${e.creadoPor}${e.creadoEl ? ' · ' + fmtFechaHora(e.creadoEl) : ''}<br>`;
+    if(e.editadoPor) auditLines += `Editado por ${e.editadoPor}${e.editadoEl ? ' · ' + fmtFechaHora(e.editadoEl) : ''}<br>`;
+    if(e.estado === 'Resuelto' && e.resueltoPor) auditLines += `Resuelto por ${e.resueltoPor}${e.resueltoEl ? ' · ' + fmtFechaHora(e.resueltoEl) : ''}`;
+
     card.innerHTML = `
       <div class="card-top">
         <span class="fecha">${fmtFecha(e.fecha)}</span>
@@ -339,28 +405,46 @@ function render(){
           <span class="label">Cómo se resolvió</span>
           <div class="txt">${e.resolucion}</div>
         </div>` : ''}
-      ${isEditor && e.estado === 'Resuelto' ? `
+      ${auditLines ? `<div class="audit">${auditLines}</div>` : ''}
+      ${isEditor ? `
+      <div class="btn-row">
+        <button class="btn ghost" data-edit="${e.id}">Editar</button>
+        <button class="btn danger" data-delete="${e.id}">Eliminar</button>
+      </div>
+      ${e.estado === 'Resuelto' ? `
         <button class="btn ghost" style="margin-top:9px;width:100%;" data-edit-resolucion="${e.id}">
           ${e.resolucion ? 'Editar cómo se resolvió' : 'Agregar cómo se resolvió'}
         </button>
       ` : ''}
-      ${isEditor ? `
       <button class="btn ${e.estado === 'Resuelto' ? 'ghost' : 'primary'}" style="margin-top:9px;width:100%;" data-toggle="${e.id}">
         ${e.estado === 'Resuelto' ? 'Marcar como sin resolver' : 'Marcar como resuelto'}
       </button>` : ''}
     `;
     if(isEditor){
       card.querySelector('[data-toggle]').addEventListener('click', () => onToggleClick(e.id));
-      const editBtn = card.querySelector('[data-edit-resolucion]');
-      if(editBtn) editBtn.addEventListener('click', () => openResolveModal(e.id));
+      card.querySelector('[data-edit]').addEventListener('click', () => openEditModal(e.id));
+      card.querySelector('[data-delete]').addEventListener('click', () => onDeleteClick(e.id));
+      const editResBtn = card.querySelector('[data-edit-resolucion]');
+      if(editResBtn) editResBtn.addEventListener('click', () => openResolveModal(e.id));
     }
     feed.appendChild(card);
   });
 }
 
+function fmtFechaHora(iso){
+  try{
+    const d = new Date(iso);
+    const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    const hh = String(d.getHours()).padStart(2,'0');
+    const mm = String(d.getMinutes()).padStart(2,'0');
+    return d.getDate() + ' ' + meses[d.getMonth()] + ' ' + hh + ':' + mm;
+  }catch(e){ return ''; }
+}
+
 function openResolveModal(id){
   const item = errores.find(e => e.id === id);
   if(!item) return;
+  if(!ensureName()) return;
   pendingResolveId = id;
   document.getElementById('f_resolucion').value = item.resolucion || '';
   document.getElementById('resolveBackdrop').classList.remove('hidden');
@@ -370,6 +454,7 @@ function onToggleClick(id){
   const item = errores.find(e => e.id === id);
   if(!item) return;
   if(item.estado === 'Resuelto'){
+    if(!ensureName()) return;
     item.estado = 'Sin resolver';
     commitData('Reabrir error: ' + item.cliente).then(ok => {
       if(ok){ render(); showToast('Estado actualizado'); }
@@ -379,21 +464,77 @@ function onToggleClick(id){
   }
 }
 
+async function onDeleteClick(id){
+  const item = errores.find(e => e.id === id);
+  if(!item) return;
+  if(!window.confirm('¿Eliminar este error de ' + (item.cliente || 'sin cliente') + '? No se puede deshacer.')) return;
+  const idx = errores.findIndex(e => e.id === id);
+  const removed = errores.splice(idx, 1)[0];
+  const ok = await commitData('Eliminar error: ' + (removed.cliente || removed.tipo));
+  if(ok){
+    errores.forEach((e, i) => e.id = 'e' + i);
+    render();
+    showToast('Error eliminado');
+  } else {
+    errores.splice(idx, 0, removed);
+  }
+}
+
+// Settings / token + name modal
 const tokenBackdrop = document.getElementById('tokenBackdrop');
 document.getElementById('btnSettings').onclick = () => {
   document.getElementById('f_token').value = getToken();
+  document.getElementById('f_name').value = getName();
   tokenBackdrop.classList.remove('hidden');
 };
 document.getElementById('btnTokenCancel').onclick = () => tokenBackdrop.classList.add('hidden');
 tokenBackdrop.addEventListener('click', (e) => { if(e.target === tokenBackdrop) tokenBackdrop.classList.add('hidden'); });
 document.getElementById('btnTokenSave').onclick = () => {
   setToken(document.getElementById('f_token').value.trim());
+  const n = document.getElementById('f_name').value.trim();
+  if(n) setName(n);
   tokenBackdrop.classList.add('hidden');
   updateFooter();
   render();
-  showToast('Token guardado en este dispositivo');
+  showToast('Guardado en este dispositivo');
 };
 
+// Stats modal
+const statsBackdrop = document.getElementById('statsBackdrop');
+document.getElementById('btnStats').onclick = () => {
+  const porTipo = {};
+  const porResp = {};
+  errores.forEach(e => {
+    porTipo[e.tipo] = (porTipo[e.tipo] || 0) + 1;
+    const r = e.resp || 'Sin asignar';
+    porResp[r] = (porResp[r] || 0) + 1;
+  });
+  const rowsHtml = (obj) => Object.entries(obj)
+    .sort((a,b) => b[1]-a[1])
+    .map(([k,v]) => `<div class="stat-row"><span>${k}</span><b>${v}</b></div>`)
+    .join('');
+  document.getElementById('statsContent').innerHTML = `
+    <div class="stat-block">
+      <h3>Por tipo de error</h3>
+      ${rowsHtml(porTipo)}
+    </div>
+    <div class="stat-block">
+      <h3>Por responsable</h3>
+      ${rowsHtml(porResp)}
+    </div>
+  `;
+  statsBackdrop.classList.remove('hidden');
+};
+document.getElementById('btnStatsClose').onclick = () => statsBackdrop.classList.add('hidden');
+statsBackdrop.addEventListener('click', (e) => { if(e.target === statsBackdrop) statsBackdrop.classList.add('hidden'); });
+
+// Search
+document.getElementById('search').addEventListener('input', (e) => {
+  filtroTexto = e.target.value;
+  render();
+});
+
+// Resolve modal
 const resolveBackdrop = document.getElementById('resolveBackdrop');
 document.getElementById('btnResolveCancel').onclick = () => resolveBackdrop.classList.add('hidden');
 resolveBackdrop.addEventListener('click', (ev) => { if(ev.target === resolveBackdrop) resolveBackdrop.classList.add('hidden'); });
@@ -402,9 +543,11 @@ document.getElementById('btnResolveSave').onclick = async () => {
   if(!item) return;
   const btn = document.getElementById('btnResolveSave');
   btn.disabled = true; btn.textContent = 'Guardando…';
-  const prevEstado = item.estado, prevResolucion = item.resolucion;
+  const prev = {...item};
   item.estado = 'Resuelto';
   item.resolucion = document.getElementById('f_resolucion').value.trim();
+  item.resueltoPor = getName() || item.resueltoPor || '';
+  item.resueltoEl = nowIso();
   const ok = await commitData('Resolver error: ' + item.cliente);
   btn.disabled = false; btn.textContent = 'Guardar';
   if(ok){
@@ -412,14 +555,17 @@ document.getElementById('btnResolveSave').onclick = async () => {
     resolveBackdrop.classList.add('hidden');
     showToast('Marcado como resuelto');
   } else {
-    item.estado = prevEstado;
-    item.resolucion = prevResolucion;
+    Object.assign(item, prev);
   }
 };
 
+// Add / Edit modal
 const modalBackdrop = document.getElementById('modalBackdrop');
-document.getElementById('fabAdd').onclick = () => {
-  if(!getToken()){ showToast('Primero conectá tu token (⚙)'); return; }
+
+function openAddModal(){
+  if(!ensureName()) return;
+  editingId = null;
+  document.getElementById('modalTitle').textContent = 'Nuevo error';
   document.getElementById('f_fecha').value = new Date().toISOString().slice(0,10);
   document.getElementById('f_tipo').value = 'Control';
   document.getElementById('f_desc').value = '';
@@ -430,8 +576,31 @@ document.getElementById('fabAdd').onclick = () => {
   document.getElementById('f_resolucion_nueva').value = '';
   document.getElementById('fieldResolucionNueva').style.display = 'none';
   document.getElementById('f_obs').value = '';
+  document.getElementById('btnSave').textContent = 'Guardar error';
   modalBackdrop.classList.remove('hidden');
-};
+}
+
+function openEditModal(id){
+  if(!ensureName()) return;
+  const item = errores.find(e => e.id === id);
+  if(!item) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = 'Editar error';
+  document.getElementById('f_fecha').value = item.fecha || '';
+  document.getElementById('f_tipo').value = item.tipo || 'Control';
+  document.getElementById('f_desc').value = item.desc || '';
+  document.getElementById('f_resp').value = item.resp || '';
+  document.getElementById('f_cliente').value = item.cliente || '';
+  document.getElementById('f_accion').value = item.accion || '';
+  document.getElementById('f_estado').value = item.estado || 'Sin resolver';
+  document.getElementById('f_resolucion_nueva').value = item.resolucion || '';
+  document.getElementById('fieldResolucionNueva').style.display = item.estado === 'Resuelto' ? 'block' : 'none';
+  document.getElementById('f_obs').value = item.obs || '';
+  document.getElementById('btnSave').textContent = 'Guardar cambios';
+  modalBackdrop.classList.remove('hidden');
+}
+
+document.getElementById('fabAdd').onclick = openAddModal;
 document.getElementById('f_estado').addEventListener('change', (e) => {
   document.getElementById('fieldResolucionNueva').style.display = e.target.value === 'Resuelto' ? 'block' : 'none';
 });
@@ -441,8 +610,10 @@ modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) 
 document.getElementById('btnSave').onclick = async () => {
   const desc = document.getElementById('f_desc').value.trim();
   if(!desc){ showToast('Falta la descripción del error'); return; }
-  const nuevo = {
-    id: 'tmp',
+  const btn = document.getElementById('btnSave');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+
+  const fields = {
     fecha: document.getElementById('f_fecha').value || new Date().toISOString().slice(0,10),
     tipo: document.getElementById('f_tipo').value,
     desc: desc,
@@ -453,18 +624,40 @@ document.getElementById('btnSave').onclick = async () => {
     resolucion: document.getElementById('f_resolucion_nueva').value.trim(),
     obs: document.getElementById('f_obs').value.trim()
   };
-  const btn = document.getElementById('btnSave');
-  btn.disabled = true; btn.textContent = 'Guardando…';
-  errores.push(nuevo);
-  const ok = await commitData('Nuevo error: ' + (nuevo.cliente || nuevo.tipo));
-  btn.disabled = false; btn.textContent = 'Guardar error';
-  if(ok){
-    errores.forEach((e, i) => e.id = 'e' + i);
-    render();
-    modalBackdrop.classList.add('hidden');
-    showToast('Error guardado');
+
+  if(editingId){
+    const item = errores.find(e => e.id === editingId);
+    const prev = {...item};
+    Object.assign(item, fields);
+    item.editadoPor = getName();
+    item.editadoEl = nowIso();
+    const ok = await commitData('Editar error: ' + (fields.cliente || fields.tipo));
+    btn.disabled = false; btn.textContent = 'Guardar cambios';
+    if(ok){
+      render();
+      modalBackdrop.classList.add('hidden');
+      showToast('Cambios guardados');
+    } else {
+      Object.assign(item, prev);
+    }
   } else {
-    errores.pop();
+    const nuevo = {
+      id: 'tmp',
+      ...fields,
+      creadoPor: getName(),
+      creadoEl: nowIso()
+    };
+    errores.push(nuevo);
+    const ok = await commitData('Nuevo error: ' + (nuevo.cliente || nuevo.tipo));
+    btn.disabled = false; btn.textContent = 'Guardar error';
+    if(ok){
+      errores.forEach((e, i) => e.id = 'e' + i);
+      render();
+      modalBackdrop.classList.add('hidden');
+      showToast('Error guardado');
+    } else {
+      errores.pop();
+    }
   }
 };
 
