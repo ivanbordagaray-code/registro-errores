@@ -76,17 +76,6 @@
     "editadoEl": "2026-09-16T17:47:22.149Z"
   },
   {
-    "fecha": "2026-09-07",
-    "tipo": "Faltante de mercadería",
-    "desc": "Faltó 1 caja de pouch cheddar, no avisaron nada el día de armado y recién se avisa al despachar; no quiso cubrir la mercadería con nuestro stock",
-    "resp": "Ariel",
-    "cliente": "Rey Jorge",
-    "accion": "Faltó 1 producto en el pedido",
-    "estado": "Sin resolver",
-    "resolucion": "",
-    "obs": "Detectado antes de despachar"
-  },
-  {
     "fecha": "2026-09-09",
     "tipo": "Control",
     "desc": "Había que mandar solo 1 palet de cremoso y se envió también el resto de productos que no correspondía enviar",
