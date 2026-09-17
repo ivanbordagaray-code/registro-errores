@@ -128,9 +128,11 @@
     "resp": "Ariel",
     "cliente": "Italiana y Tremblay",
     "accion": "Controló mal el insumo",
-    "estado": "Sin resolver",
-    "resolucion": "",
-    "obs": "Detectado al preparar los insumos para despachar el sábado"
+    "estado": "Resuelto",
+    "resolucion": "Pedimos a italiana que nos traiga el insumo y se envio a quien correspondía",
+    "obs": "Detectado al preparar los insumos para despachar el sábado",
+    "resueltoPor": "Ivan",
+    "resueltoEl": "2026-09-17T14:05:17.691Z"
   },
   {
     "fecha": "2026-09-11",
