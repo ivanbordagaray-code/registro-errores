@@ -183,5 +183,18 @@
     "obs": "",
     "editadoPor": "Ivan",
     "editadoEl": "2026-09-16T16:46:26.917Z"
+  },
+  {
+    "fecha": "2026-09-18",
+    "tipo": "Control",
+    "desc": "Enviaron 2 cajas de queso crema clasico x caja de untable clasico",
+    "resp": "Carlos",
+    "cliente": "Lopez german",
+    "accion": "Se controlo caja de queso crema y era untable",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-18T18:44:51.505Z"
   }
 ]
