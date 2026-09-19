@@ -204,10 +204,12 @@
     "resp": "Roman",
     "cliente": "Santigli maximiliano",
     "accion": "Se peso gouda x holanda",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Pedimos el crédito de la factura marcando el error",
     "obs": "",
     "creadoPor": "Ivan",
-    "creadoEl": "2026-09-19T10:55:23.702Z"
+    "creadoEl": "2026-09-19T10:55:23.702Z",
+    "resueltoPor": "Ivan",
+    "resueltoEl": "2026-09-19T17:51:24.107Z"
   }
 ]
