@@ -196,5 +196,18 @@
     "obs": "",
     "creadoPor": "Ivan",
     "creadoEl": "2026-09-18T18:44:51.505Z"
+  },
+  {
+    "fecha": "2026-09-19",
+    "tipo": "Armado de pedido",
+    "desc": "Pesaron gouda x holanda",
+    "resp": "Roman",
+    "cliente": "Santigli maximiliano",
+    "accion": "Se peso gouda x holanda",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-19T10:55:23.702Z"
   }
 ]
