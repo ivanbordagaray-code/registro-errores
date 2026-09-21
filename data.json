@@ -211,5 +211,18 @@
     "creadoEl": "2026-09-19T10:55:23.702Z",
     "resueltoPor": "Ivan",
     "resueltoEl": "2026-09-19T17:51:24.107Z"
+  },
+  {
+    "fecha": "2026-09-21",
+    "tipo": "Venta",
+    "desc": "Producto no pedido leche desc cayetana 10 cajas",
+    "resp": "Cristian",
+    "cliente": "Salomon ariel",
+    "accion": "El cliente rechaza las leches antes de descargar",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-21T10:01:15.959Z"
   }
 ]
