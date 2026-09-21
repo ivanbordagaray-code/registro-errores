@@ -228,7 +228,7 @@
   {
     "fecha": "2026-09-21",
     "tipo": "Control",
-    "desc": "Falto 4 cajas de por salut light en el pedido de stodola",
+    "desc": "Falto enviar 4 cajas de por salut light en el pedido de stodola",
     "resp": "Ariel",
     "cliente": "Stodola",
     "accion": "Se controlo mal el pedido",
@@ -236,6 +236,8 @@
     "resolucion": "",
     "obs": "",
     "creadoPor": "Ivan",
-    "creadoEl": "2026-09-21T14:46:24.978Z"
+    "creadoEl": "2026-09-21T14:46:24.978Z",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-21T14:46:48.183Z"
   }
 ]
