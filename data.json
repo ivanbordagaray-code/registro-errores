@@ -224,5 +224,18 @@
     "obs": "",
     "creadoPor": "Ivan",
     "creadoEl": "2026-09-21T10:01:15.959Z"
+  },
+  {
+    "fecha": "2026-09-21",
+    "tipo": "Control",
+    "desc": "Falto 4 cajas de por salut light en el pedido de stodola",
+    "resp": "Ariel",
+    "cliente": "Stodola",
+    "accion": "Se controlo mal el pedido",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-21T14:46:24.978Z"
   }
 ]
