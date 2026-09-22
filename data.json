@@ -243,5 +243,18 @@
     "editadoEl": "2026-09-22T13:40:39.466Z",
     "resueltoPor": "Ivan",
     "resueltoEl": "2026-09-22T13:41:15.801Z"
+  },
+  {
+    "fecha": "2026-09-22",
+    "tipo": "Control",
+    "desc": "Falto 1 caja de untable en el pedido",
+    "resp": "Ariel",
+    "cliente": "Frasso fernando",
+    "accion": "Se controlo el pedido y falto 1 caja de untable",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-22T16:58:21.112Z"
   }
 ]
