@@ -232,12 +232,14 @@
     "resp": "Ariel",
     "cliente": "Stodola",
     "accion": "Se controlo mal el pedido",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "El vendedor pidió que no entreguemos las cajas faltantes el hace otro pedido nuevo para la próxima entrega",
     "obs": "",
     "creadoPor": "Ivan",
     "creadoEl": "2026-09-21T14:46:24.978Z",
     "editadoPor": "Ivan",
-    "editadoEl": "2026-09-22T13:40:39.466Z"
+    "editadoEl": "2026-09-22T13:40:39.466Z",
+    "resueltoPor": "Ivan",
+    "resueltoEl": "2026-09-22T13:41:15.801Z"
   }
 ]
