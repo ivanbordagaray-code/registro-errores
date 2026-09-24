@@ -261,13 +261,15 @@
     "fecha": "2026-09-24",
     "tipo": "Control",
     "desc": "Falto dos cajas de papas cod 1123",
-    "resp": "Ariel",
+    "resp": "Carlos",
     "cliente": "Pirollo delia ana",
     "accion": "Se controlo pedido de papas fritas y al chofer le falto dos cajas del codigo 1123",
     "estado": "Sin resolver",
     "resolucion": "",
     "obs": "",
     "creadoPor": "Ivan",
-    "creadoEl": "2026-09-24T16:12:38.468Z"
+    "creadoEl": "2026-09-24T16:12:38.468Z",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-24T16:53:15.387Z"
   }
 ]
