@@ -279,11 +279,22 @@ function b64DecodeUnicode(str){ return decodeURIComponent(escape(atob(str))); }
 
 async function loadData(){
   try{
+    const headers = {'Accept':'application/vnd.github+json'};
+    const token = getToken();
+    if(token) headers['Authorization'] = 'Bearer ' + token;
     const res = await fetch(API_BASE + '?t=' + Date.now(), {
-      headers: {'Accept':'application/vnd.github+json'},
+      headers: headers,
       cache: 'no-store'
     });
-    if(!res.ok) throw new Error('fetch failed');
+    if(!res.ok){
+      if(res.status === 403){
+        const remaining = res.headers.get('x-ratelimit-remaining');
+        if(remaining === '0'){
+          throw new Error('Se alcanzó el límite de lecturas de GitHub para esta red. Conectate con tu token (⚙) para levantar el límite, o esperá unos minutos y volvé a intentar.');
+        }
+      }
+      throw new Error('GitHub respondió ' + res.status + '. Probá de nuevo en un momento.');
+    }
     const json = await res.json();
     fileSha = json.sha;
     errores = JSON.parse(b64DecodeUnicode(json.content));
@@ -291,7 +302,7 @@ async function loadData(){
     updateFooter();
     render();
   }catch(e){
-    document.getElementById('feed').innerHTML = '<div class="empty">No se pudo cargar el registro.</div>';
+    document.getElementById('feed').innerHTML = '<div class="empty">No se pudo cargar el registro.<br><span style="font-size:12px;">' + (e.message || '') + '</span></div>';
   }
 }
 
