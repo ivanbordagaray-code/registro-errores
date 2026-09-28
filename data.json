@@ -191,11 +191,13 @@
     "resp": "Carlos",
     "cliente": "Lopez german",
     "accion": "Se controlo caja de queso crema y era untable",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Se envio las dos cajas de untable a tremblay",
     "obs": "",
     "creadoPor": "Ivan",
-    "creadoEl": "2026-09-18T18:44:51.505Z"
+    "creadoEl": "2026-09-18T18:44:51.505Z",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-09-28T14:08:33.363Z"
   },
   {
     "fecha": "2026-09-19",
