@@ -271,5 +271,18 @@
     "creadoEl": "2026-09-24T16:12:38.468Z",
     "editadoPor": "Ivan",
     "editadoEl": "2026-09-24T16:55:24.969Z"
+  },
+  {
+    "fecha": "2026-09-28",
+    "tipo": "Control",
+    "desc": "Se envio 10 cajas de dulce arrodul sin boleta, no estaban pedidos tampoco",
+    "resp": "Ariel",
+    "cliente": "Rocha gallegos",
+    "accion": "Se envio 10 cajas de dulce arrodul sin boleta, no estaban pedidos tampoco",
+    "estado": "Resuelto",
+    "resolucion": "Se metieron las 10 cajas de dulce al stock",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-28T14:06:19.819Z"
   }
 ]
