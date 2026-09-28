@@ -286,5 +286,18 @@
     "obs": "",
     "creadoPor": "Ivan",
     "creadoEl": "2026-09-28T14:06:19.819Z"
+  },
+  {
+    "fecha": "2026-09-28",
+    "tipo": "Control",
+    "desc": "Se envío una caja de mas cremax360 y una caja de menos de cremax200",
+    "resp": "Ariel",
+    "cliente": "Quiroga",
+    "accion": "Se envío una caja de mas cremax360 y una caja de menos de cremax200",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Ivan",
+    "creadoEl": "2026-09-28T15:55:54.303Z"
   }
 ]
