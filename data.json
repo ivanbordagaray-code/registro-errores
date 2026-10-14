@@ -266,13 +266,13 @@
     "resp": "Nico Ron",
     "cliente": "Pirollo delia ana",
     "accion": "Se controlo pedido de papas fritas y al chofer le falto dos cajas del codigo 1123",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Se realizo una nota de credito",
     "obs": "",
     "creadoPor": "Ivan",
     "creadoEl": "2026-09-24T16:12:38.468Z",
     "editadoPor": "Ivan",
-    "editadoEl": "2026-09-24T16:55:24.969Z"
+    "editadoEl": "2026-10-14T11:53:08.012Z"
   },
   {
     "fecha": "2026-09-28",
