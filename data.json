@@ -320,10 +320,12 @@
     "resp": "Ariel",
     "cliente": "El quesero san miguel",
     "accion": "No se controlo las barras fue la boleta pero no la mercaderia",
-    "estado": "Sin resolver",
-    "resolucion": "",
+    "estado": "Resuelto",
+    "resolucion": "Salió nuevamente",
     "obs": "",
     "creadoPor": "Ivan",
-    "creadoEl": "2026-10-13T17:50:14.112Z"
+    "creadoEl": "2026-10-13T17:50:14.112Z",
+    "resueltoPor": "Ivan",
+    "resueltoEl": "2026-10-14T11:52:35.996Z"
   }
 ]
