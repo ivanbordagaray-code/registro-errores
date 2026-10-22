@@ -253,11 +253,13 @@
     "resp": "Ariel",
     "cliente": "Frasso fernando",
     "accion": "Se controlo el pedido y falto 1 caja de untable",
-    "estado": "Sin resolver",
+    "estado": "Resuelto",
     "resolucion": "",
     "obs": "",
     "creadoPor": "Ivan",
-    "creadoEl": "2026-09-22T16:58:21.112Z"
+    "creadoEl": "2026-09-22T16:58:21.112Z",
+    "editadoPor": "Ivan",
+    "editadoEl": "2026-10-22T21:11:05.084Z"
   },
   {
     "fecha": "2026-09-24",
