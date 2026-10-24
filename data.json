@@ -333,5 +333,18 @@
     "creadoEl": "2026-10-13T17:50:14.112Z",
     "resueltoPor": "Ivan",
     "resueltoEl": "2026-10-14T11:52:35.996Z"
+  },
+  {
+    "fecha": "2026-10-24",
+    "tipo": "Control",
+    "desc": "ERROR EN EL ARMADO DE PEDIDO.",
+    "resp": "Ariel",
+    "cliente": "ARENA CLAUDIO",
+    "accion": "TIENE FACTURADO AZUL TREMBLAY MEDIA HORA Y LE MANDAMOS UNA CAJA DE AZUL UNTABLE",
+    "estado": "Sin resolver",
+    "resolucion": "",
+    "obs": "",
+    "creadoPor": "Lautaro",
+    "creadoEl": "2026-10-24T14:57:55.620Z"
   }
 ]
